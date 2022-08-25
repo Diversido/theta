@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'connect.dart';
 
-const String _urlAsString = 'http://192.168.1.1/osc/commands/execute';
-final Uri _url = Uri.parse(_urlAsString);
+const String _url = 'http://192.168.1.1/osc/commands/execute';
 const Map<String, String> _headers = {
   'Content-Type': 'application/json;charset=utf-8'
 };

@@ -18,7 +18,7 @@ class Ambulance {
   /// This will not reset my settings.  This also clears
   /// my settings.
   /// https://api.ricoh/docs/theta-web-api-v2.1/commands/camera.reset/
-  static Future<Map<String, dynamic>> reset() async {
+  static Future<Map<String, dynamic>?> reset() async {
     var data = {'name': 'camera.reset'};
     var response = connect(_baseUrl, 'post', data);
     return response;
@@ -27,7 +27,7 @@ class Ambulance {
   /// delete all files from camera.  If this doesn't work, try
   /// updating the SC2 firmware.  Older versions had a bug
   /// that prevented the 'all' parameter from working
-  static Future<Map<String, dynamic>> deleteAll() async {
+  static Future<Map<String, dynamic>?> deleteAll() async {
     var data = {
       'name': 'camera.delete',
       'parameters': {

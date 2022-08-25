@@ -15,7 +15,7 @@ class ThetaRun {
     var data = {'name': 'camera.takePicture'};
     //encode Map to JSON
     var body = jsonEncode(data);
-    final Uri _urlAsUri = Uri.parse(_urlAsString);
+    final Uri _urlAsUri = Uri.parse(_url);
 
     var response = await http.post(_urlAsUri, headers: _headers, body: body);
     var responseBody = jsonDecode(response.body);

@@ -128,8 +128,9 @@ class ThetaFile {
       // listOfUrls.forEach((url) async {
       for (var i = 0; i < listOfUrls.length; i++) {
         print(listOfUrls[i]);
+        Uri url = Uri.parse('${listOfUrls[i]}?type=thumb');
         var response =
-            await client.get('${listOfUrls[i]}?type=thumb', headers: headers);
+            await client.get(url, headers: headers);
         print(response.statusCode);
         thumbs.add(response.bodyBytes);
       }

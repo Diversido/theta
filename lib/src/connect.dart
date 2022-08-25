@@ -5,9 +5,11 @@ const Map<String, String> _headers = {
   'Content-Type': 'application/json;charset=utf-8'
 };
 
-Future<Map<String, dynamic>> connect(String url, String protocol,
+Future<Map<String, dynamic>> connect(String urlAsString, String protocol,
     [Map requestBodyMap]) async {
   http.Response response;
+  
+  Uri url = Uri.parse(urlAsString);
 
   try {
     if (protocol == 'get') {

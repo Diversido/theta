@@ -9,7 +9,7 @@ class Camera {
   /// Camera info including firmware version and camera model
   /// based on GET http://192.168.1.1/osc/info
   ///
-  static Future<Map<String, dynamic>> get info async {
+  static Future<Map<String, dynamic>?> get info async {
     // GET http://192.168.1.1/osc/info
     var url = _baseUrl + 'info';
     var response = connect(url, 'get');
@@ -51,7 +51,7 @@ class Camera {
   ///  }
   ///}
   /// ```
-  static Future<Map<String, dynamic>> get state async {
+  static Future<Map<String, dynamic>?> get state async {
     var url = _baseUrl + 'state';
     // request: POST http://192.168.1.1/osc/state
     var response = connect(url, 'post');
@@ -84,7 +84,7 @@ class Camera {
   /// for takePicture.  If you take bracketed or interval shooting,
   /// with the SC2 you need to use /osc/state to check when the camera
   /// is ready for the next command
-  static Future<Map<String, dynamic>> status(int id) async {
+  static Future<Map<String, dynamic>?> status(int id) async {
     //POST http://192.168.1.1/osc/commands/status
     var url = _baseUrl + 'commands/status';
 

@@ -9,7 +9,7 @@ const String _url = 'http://192.168.1.1/osc/commands/execute';
 /// on the official API specification.
 class CameraOption {
   /// Turn on hdr filter
-  static Future<Map<String, dynamic>> hdrSet() async {
+  static Future<Map<String, dynamic>?> hdrSet() async {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
@@ -23,7 +23,7 @@ class CameraOption {
   }
 
   /// turn off filter, incuding hdr, DR Comp, Noise Reduction, Hh hdr
-  static Future<Map<String, dynamic>> filterOff() async {
+  static Future<Map<String, dynamic>?> filterOff() async {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
@@ -45,7 +45,7 @@ class CameraOption {
   /// RICOH THETA Z1 or later.
   /// * 4 : Shutter priority program - Manually set the shutter speed (shutterSpeed).
   /// * 5 : 	ISO priority program - Manually set the ISO sensitivity (iso) setting.
-  static Future<Map<String, dynamic>> setExposureProgram(programValue) async {
+  static Future<Map<String, dynamic>?> setExposureProgram(programValue) async {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
@@ -60,7 +60,7 @@ class CameraOption {
 
   /// save hdr filter setting to my settings to survive
   /// camera reboot
-  static Future<Map<String, dynamic>> hdrSave() async {
+  static Future<Map<String, dynamic>?> hdrSave() async {
     var data = {
       'name': 'camera._setMySetting',
       'parameters': {
@@ -75,7 +75,7 @@ class CameraOption {
   }
 
   /// Turn off filter in mySetting
-  static Future<Map<String, dynamic>> filterSavedOff() async {
+  static Future<Map<String, dynamic>?> filterSavedOff() async {
     var data = {
       'name': 'camera._setMySetting',
       'parameters': {
@@ -90,7 +90,7 @@ class CameraOption {
   }
 
   /// get current filter settings
-  static Future<Map<String, dynamic>> get filterSetting async {
+  static Future<Map<String, dynamic>?> get filterSetting async {
     var data = {
       'name': 'camera.getOptions',
       'parameters': {
@@ -102,7 +102,7 @@ class CameraOption {
   }
 
   /// get  filter saved settings
-  static Future<Map<String, dynamic>> get filterSavedSetting async {
+  static Future<Map<String, dynamic>?> get filterSavedSetting async {
     var data = {
       'name': 'camera._getMySetting',
       'parameters': {
@@ -117,7 +117,7 @@ class CameraOption {
   /// auto sleep. requires a number between 60 and 65535
   /// the default value is 300 seconds or 5 minutes
   /// A value of 65535 will disable sleep
-  static Future<Map<String, dynamic>> sleepDelay(int seconds) async {
+  static Future<Map<String, dynamic>?> sleepDelay(int seconds) async {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
@@ -132,7 +132,7 @@ class CameraOption {
   /// 60 will power off the camera after 60 seconds or 1 minute
   /// The default is 600 seconds or 10 minutes
   /// A value of 65535 will disable auto power off
-  static Future<Map<String, dynamic>> offDelay(int seconds) async {
+  static Future<Map<String, dynamic>?> offDelay(int seconds) async {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
@@ -144,7 +144,7 @@ class CameraOption {
   }
 
   // set options from JSON string
-  static Future<Map<String, dynamic>> setOptionJson(options) {
+  static Future<Map<String, dynamic>?> setOptionJson(options) {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {'options': jsonDecode(options)}
@@ -154,7 +154,7 @@ class CameraOption {
   }
 
   /// set option with single parameter
-  static Future<Map<String, dynamic>> setOption(
+  static Future<Map<String, dynamic>?> setOption(
       String optionName, dynamic optionValue) async {
     // print('option received is $optionValue of type ${optionValue.runtimeType}');
     var parsedValue;
@@ -182,7 +182,7 @@ class CameraOption {
   }
 
   /// get option with single parameter
-  static Future<Map<String, dynamic>> getOption(String optionName) async {
+  static Future<Map<String, dynamic>?> getOption(String optionName) async {
     var data = {
       'name': 'camera.getOptions',
       'parameters': {
@@ -200,7 +200,7 @@ class CameraOption {
   /// The SC2 will load my settings on power on and if the Wi-Fi connection
   /// is dropped.  The Z1 loads my settings when you push the Fn button
   /// a few times.  The icon MY will appear on the OLED.
-  static Future<Map<String, dynamic>> setMySetting(
+  static Future<Map<String, dynamic>?> setMySetting(
       String optionName, dynamic optionValue) async {
     print('option received is $optionValue of type ${optionValue.runtimeType}');
     var parsedValue;
@@ -232,7 +232,7 @@ class CameraOption {
     // return {'test': 'testdata'};
   }
 
-  static Future<Map<String, dynamic>> setMySettingVideo(
+  static Future<Map<String, dynamic>?> setMySettingVideo(
       String optionName, dynamic optionValue) async {
     print('option received is $optionValue of type ${optionValue.runtimeType}');
     var parsedValue;
@@ -267,7 +267,7 @@ class CameraOption {
   /// get my settings image mode
   /// The syntax is different on S and SC
   /// This will only work on V, Z1, SC2, and SC2B
-  static Future<Map<String, dynamic>> getMySetting() async {
+  static Future<Map<String, dynamic>?> getMySetting() async {
     var data = {
       'name': 'camera._getMySetting',
       'parameters': {'mode': 'image'}
@@ -279,7 +279,7 @@ class CameraOption {
   /// get my settings video mode
   /// The syntax is different on S and SC
   /// This will only work on V, Z1, SC2, and SC2B
-  static Future<Map<String, dynamic>> getMySettingVideo() async {
+  static Future<Map<String, dynamic>?> getMySettingVideo() async {
     var data = {
       'name': 'camera._getMySetting',
       'parameters': {'mode': 'video'}

@@ -5,10 +5,10 @@ const Map<String, String> _headers = {
   'Content-Type': 'application/json;charset=utf-8'
 };
 
-Future<Map<String, dynamic>> connect(String urlAsString, String protocol,
-    [Map requestBodyMap]) async {
+Future<Map<String, dynamic>?> connect(String urlAsString, String protocol,
+    [Map? requestBodyMap]) async {
   http.Response response;
-  
+
   Uri url = Uri.parse(urlAsString);
 
   try {
@@ -33,7 +33,7 @@ Future<Map<String, dynamic>> connect(String urlAsString, String protocol,
       print('request: ${response.request}');
       return {'error': 'failed with status code ${response.statusCode}'};
     } else {
-      Map responseBody = jsonDecode(response.body);
+      Map<String, dynamic> responseBody = jsonDecode(response.body);
       // print(JsonEncoder.withIndent('  ').convert(responseBody));
       // return a Dart map, not JSON
       return responseBody;

@@ -44,7 +44,7 @@ class ThetaFile {
   /// ```dart
   /// Image.memory(imageBytes)
   /// ```
-  static Future<Uint8List> getLastThumbBytes() async {
+  static Future<Uint8List?> getLastThumbBytes() async {
     var _data = {
       'name': 'camera.listFiles',
       'parameters': {
@@ -57,14 +57,18 @@ class ThetaFile {
     };
     var response = await connect(_url, 'post', _data);
 
-    String thumb64 = response['results']['entries'][0]['thumbnail'];
+    if (response == null) {
+      return null;
+    }
+    
+    String thumb64 = response!['results']['entries'][0]['thumbnail'];
     var thumbBytes = base64Decode(thumb64);
     return thumbBytes;
   }
 
   /// total number of image and video files on camera
   ///
-  static Future<int> get totalEntries async {
+  static Future<int?> get totalEntries async {
     var _data = {
       'name': 'camera.listFiles',
       'parameters': {
@@ -75,8 +79,12 @@ class ThetaFile {
       }
     };
     var response = await connect(_url, 'post', _data);
-
-    return response['results']['totalEntries'];
+    
+    if (response == null) {
+      return null;
+    }
+    
+    return response!['results']['totalEntries'];
   }
 
   /// List of the URLs for the images and video on the THETA camera
@@ -89,7 +97,7 @@ class ThetaFile {
   /// print(pretty(await ThetaFile.listUrls(await ThetaFile.totalEntries)));
   /// ```
 
-  static Future<List<String>> listUrls(int entryCount) async {
+  static Future<List<String>?> listUrls(int entryCount) async {
     var _data = {
       'name': 'camera.listFiles',
       'parameters': {
@@ -100,7 +108,12 @@ class ThetaFile {
       }
     };
     var response = await connect(_url, 'post', _data);
-    var entries = response['results']['entries'];
+    
+    if (response == null) {
+      return null;
+    }
+    
+    var entries = response!['results']['entries'];
 
     //ignore: omit_local_variable_types
     List<String> urls = [];

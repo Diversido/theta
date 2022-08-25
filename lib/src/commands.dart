@@ -24,7 +24,7 @@ class ThetaRun {
 
   /// stop capture.  for continuous interval shooting, returns list of
   /// URLs.
-  static Future<Map<String, dynamic>> stopCapture() async {
+  static Future<Map<String, dynamic>?> stopCapture() async {
     var _data = {
       'name': 'camera.stopCapture',
     };
